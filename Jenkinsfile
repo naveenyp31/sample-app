@@ -1,13 +1,17 @@
 pipeline {
     agent any
-    environment {
-    }
+
     stages {
         stage('checkout') {
-        
+            steps {
+                git credentialsId: 'Git_cred', 
+                url: 'https://github.com/naveenyp31/sample-app.git'
+            }              
         }
-        stage('build') {
-
-        }
+        stage('Build') {
+            steps {
+                sh "mvn clean install"
+            }       
+        }     
     }
 }
